@@ -16,7 +16,7 @@
 
 ## 📖 Executive Summary
 
-The **Smart Route Optimizer** is a production-grade, AI-driven routing platform engineered exclusively for the Australian heavy vehicle industry. It autonomously computes optimal routes across the **entire national road network** while enforcing **NHVR fatigue regulations**, **Chain of Responsibility** obligations, and **real-time traffic/weather conditions** – all wrapped in an elegant web UI, CLI, and REST API.
+The **Smart Route Optimiser** is a production-grade, AI-driven routing platform engineered exclusively for the Australian heavy vehicle industry. It autonomously computes optimal routes across the **entire national road network** while enforcing **NHVR fatigue regulations**, **Chain of Responsibility** obligations, and **real-time traffic/weather conditions** – all wrapped in an elegant web UI, CLI, and REST API.
 
 ### Why This Exists
 
