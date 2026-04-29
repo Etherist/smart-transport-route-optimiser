@@ -1,4 +1,4 @@
-# 🚛 Smart Route Optimizer for Australian Transport
+# 🚛 Smart Route Optimiser for Australian Transport
 
 > **AI-Powered, Nationwide Route Planning for Heavy Vehicles – Compliant, Sustainable, Scalable**
 
