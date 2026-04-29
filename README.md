@@ -522,9 +522,13 @@ Open an issue first for large changes.
 
 ## 📞 Contact
 
-- **Issues:** https://github.com/your-username/smart-route-optimizer/issues
-- **Email:** support@yourcompany.com.au
-- **Website:** https://yourcompany.com.au
+- **Issues:** https://github.com/Etherist/smart-route-optimiser/issues
+- **GitHub**: [@Etherist](https://github.com/Etherist)
+- **LinkedIn**: [My LinkedIn Profile](https://www.linkedin.com/in/robert-b-7aba31a/)
+- **Portfolio**: [perspicacious.au](https://perspicacious.au)
+- **Email**: perspicacious@tuta.io
+- **Issues:** [GitHub Issues](https://github.com/Etherist/ai-fraud-detection-sme/issues)
+- **Discussions:** [GitHub Discussions](https://github.com/Etherist/ai-fraud-detection-sme/discussions)
 
 ---
 
