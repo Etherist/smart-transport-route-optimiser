@@ -1,0 +1,94 @@
+{
+  "fatigue_management": {
+    "standard_rules": {
+      "max_work_hours_per_day": 12,
+      "max_work_hours_per_week": 72,
+      "min_continuous_rest_period_hours": 7,
+      "max_consecutive_work_days": 7
+    },
+    "heavy_vehicle_rules": {
+      "max_work_hours_per_day": 12,
+      "max_work_hours_per_week": 72,
+      "min_continuous_rest_period_hours": 7,
+      "required_rest_periods": [
+        {
+          "after_hours": 12,
+          "rest_min_hours": 7
+        },
+        {
+          "after_hours": 72,
+          "rest_min_hours": 24
+        }
+      ]
+    },
+    "cor_requirements": {
+      "shared_responsibility": true,
+      "parties_in_chain": ["driver", "operator", "loader", "scheduler"],
+      "primary_duties": [
+        "Ensure vehicle is roadworthy",
+        "Ensure load is secure",
+        "Ensure driver is not fatigued",
+        "Ensure speed limits are observed"
+      ]
+    }
+  },
+  "jurisdictions": {
+    "NSW": {
+      "regulator": "Transport for NSW (TfNSW)",
+      "heavy_vehicle_division": "Heavy Vehicle Inspectorate",
+      "enforcement_contact": "13 77 88",
+      "website": "https://www.transport.nsw.gov.au",
+      "notes": "Sydney Harbour Bridge and Tunnel have separate mass limits; some B-Doubles require permit on certain roads"
+    },
+    "VIC": {
+      "regulator": "VicRoads",
+      "heavy_vehicle_division": "Heavy Vehicle Services",
+      "enforcement_contact": "13 11 71",
+      "website": "https://www.vicroads.vic.gov.au",
+      "notes": "Urban areas have lower sound barriers; some residential streets restricted for vehicles >12m"
+    },
+    "QLD": {
+      "regulator": "Department of Transport and Main Roads (TMR)",
+      "heavy_vehicle_division": "Heavy Vehicle Operations",
+      "enforcement_contact": "13 74 68",
+      "website": "https://www.tmr.qld.gov.au",
+      "notes": "Restricted access vehicles (RAV) network extensive; permit required for many B-Double routes"
+    },
+    "SA": {
+      "regulator": "Department for Infrastructure and Transport",
+      "heavy_vehicle_division": "Heavy Vehicles",
+      "enforcement_contact": "1800 654 499",
+      "website": "https://www.dit.sa.gov.au",
+      "notes": "Outback roads may have seasonal closures; weight limits apply on some bridges"
+    },
+    "WA": {
+      "regulator": "Main Roads Western Australia",
+      "heavy_vehicle_division": "Heavy Vehicle Services",
+      "enforcement_contact": "138 486",
+      "website": "https://www.mainroads.wa.gov.au",
+      "notes": "Road train operations permitted on designated routes; prospective notice required"
+    },
+    "TAS": {
+      "regulator": "Department of State Growth",
+      "heavy_vehicle_division": "Transport",
+      "enforcement_contact": "1300 135 513",
+      "website": "https://www.stategrowth.tas.gov.au",
+      "notes": "Bass Highway has specific restrictions; ferry connections require advance booking"
+    },
+    "NT": {
+      "regulator": "Department of Infrastructure, Planning and Logistics",
+      "heavy_vehicle_division": "Road Transport",
+      "enforcement_contact": "1800 245 677",
+      "website": "https://dipl.nt.gov.au",
+      "notes": "Heavy vehicles must carry additional water in outback; remote area travel permits required"
+    },
+    "ACT": {
+      "regulator": "Access Canberra",
+      "heavy_vehicle_division": "Transport",
+      "enforcement_contact": "13 22 81",
+      "website": "https://www.accesscanberra.act.gov.au",
+      "notes": "Strict access controls; many suburban streets restricted for vehicles over 12m"
+    }
+  }
+}
+

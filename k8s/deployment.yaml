@@ -1,0 +1,78 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: route-optimizer-api
+  namespace: route-optimizer
+  labels:
+    app: route-optimizer
+    component: api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: route-optimizer
+      component: api
+  template:
+    metadata:
+      labels:
+        app: route-optimizer
+        component: api
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8000"
+        prometheus.io/path: "/metrics"
+    spec:
+      containers:
+        - name: api
+          image: ghcr.io/$(GITHUB_REPOSITORY):latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+              name: http
+          envFrom:
+            - configMapRef:
+                name: route-optimizer-config
+            - secretRef:
+                name: route-optimizer-secrets
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 15
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 30
+            periodSeconds: 20
+            timeoutSeconds: 5
+            failureThreshold: 3
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+          volumeMounts:
+            - name: reports-volume
+              mountPath: /app/reports
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1000
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: false
+            capabilities:
+              drop:
+                - ALL
+      volumes:
+        - name: reports-volume
+          persistentVolumeClaim:
+            claimName: route-optimizer-reports-pvc
+      securityContext:
+        fsGroup: 1000
+        runAsNonRoot: true

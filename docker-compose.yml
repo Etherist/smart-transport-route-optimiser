@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  # Main FastAPI application
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: route-optimizer-api
+    ports:
+      - "8000:8000"
+    volumes:
+      # Mount source code for live reload in development
+      - ./src:/app/src
+      - ./reports:/app/reports
+      - ./src/data:/app/src/data
+    environment:
+      - ENVIRONMENT=development
+      - DEBUG=True
+      - HOST=0.0.0.0
+      - PORT=8000
+      - LIVE_TRAFFIC_NSW_API_KEY=mock_key
+      - BOM_API_KEY=mock_key
+    command: uvicorn src.app.main:app --host 0.0.0.0 --port 8000 --reload
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - route-optimizer-net
+
+  # Mock Traffic & Weather API server (for realism)
+  mock-api:
+    build:
+      context: .
+      dockerfile: Dockerfile.mock
+    container_name: route-optimizer-mock-api
+    ports:
+      - "8001:8001"
+    environment:
+      - HOST=0.0.0.0
+      - PORT=8001
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - route-optimizer-net
+
+networks:
+  route-optimizer-net:
+    driver: bridge

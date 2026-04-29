@@ -1,0 +1,194 @@
+{
+  "Rigid": {
+    "max_speed_kmh": 100,
+    "fuel_consumption_L_per_km": 0.12,
+    "max_weight_kg": 22000,
+    "height_m": 4.3,
+    "length_m": 12.0,
+    "width_m": 2.5,
+    "axle_count": 2,
+    "nhvr_rules": {
+      "max_hours_per_day": 12,
+      "max_hours_per_week": 72,
+      "min_rest_after_shift_hours": 7
+    }
+  },
+  "Truck": {
+    "max_speed_kmh": 100,
+    "fuel_consumption_L_per_km": 0.15,
+    "max_weight_kg": 40000,
+    "height_m": 4.3,
+    "length_m": 12.0,
+    "width_m": 2.5,
+    "axle_count": 3,
+    "nhvr_rules": {
+      "max_hours_per_day": 12,
+      "max_hours_per_week": 72,
+      "min_rest_after_shift_hours": 7
+    }
+  },
+  "Semi-Trailer": {
+    "max_speed_kmh": 100,
+    "fuel_consumption_L_per_km": 0.18,
+    "max_weight_kg": 50000,
+    "height_m": 4.3,
+    "length_m": 16.0,
+    "width_m": 2.5,
+    "axle_count": 3,
+    "nhvr_rules": {
+      "max_hours_per_day": 12,
+      "max_hours_per_week": 72,
+      "min_rest_after_shift_hours": 7
+    }
+  },
+  "B-Double": {
+    "max_speed_kmh": 90,
+    "fuel_consumption_L_per_km": 0.20,
+    "max_weight_kg": 60000,
+    "height_m": 4.3,
+    "length_m": 19.0,
+    "width_m": 2.5,
+    "axle_count": 4,
+    "nhvr_rules": {
+      "max_hours_per_day": 12,
+      "max_hours_per_week": 72,
+      "min_rest_after_shift_hours": 7
+    }
+  },
+  "B-Triple": {
+    "max_speed_kmh": 90,
+    "fuel_consumption_L_per_km": 0.23,
+    "max_weight_kg": 80000,
+    "height_m": 4.3,
+    "length_m": 28.0,
+    "width_m": 2.5,
+    "axle_count": 6,
+    "nhvr_rules": {
+      "max_hours_per_day": 12,
+      "max_hours_per_week": 72,
+      "min_rest_after_shift_hours": 7
+    }
+  },
+  "Tautliner": {
+    "max_speed_kmh": 100,
+    "fuel_consumption_L_per_km": 0.19,
+    "max_weight_kg": 42000,
+    "height_m": 4.3,
+    "length_m": 16.5,
+    "width_m": 2.5,
+    "axle_count": 3,
+    "cargo_type": "curtain_side",
+    "nhvr_rules": {
+      "max_hours_per_day": 12,
+      "max_hours_per_week": 72,
+      "min_rest_after_shift_hours": 7
+    }
+  },
+  "Reefer": {
+    "max_speed_kmh": 95,
+    "fuel_consumption_L_per_km": 0.22,
+    "max_weight_kg": 38000,
+    "height_m": 4.3,
+    "length_m": 16.0,
+    "width_m": 2.5,
+    "axle_count": 3,
+    "cargo_type": "refrigerated",
+    "refrigeration_power_kw": 5.5,
+    "nhvr_rules": {
+      "max_hours_per_day": 12,
+      "max_hours_per_week": 72,
+      "min_rest_after_shift_hours": 7
+    }
+  },
+  "Flatbed": {
+    "max_speed_kmh": 100,
+    "fuel_consumption_L_per_km": 0.16,
+    "max_weight_kg": 45000,
+    "height_m": 4.0,
+    "length_m": 16.5,
+    "width_m": 2.5,
+    "axle_count": 3,
+    "cargo_type": "open_bed",
+    "nhvr_rules": {
+      "max_hours_per_day": 12,
+      "max_hours_per_week": 72,
+      "min_rest_after_shift_hours": 7
+    }
+  },
+  "Dump Truck": {
+    "max_speed_kmh": 80,
+    "fuel_consumption_L_per_km": 0.25,
+    "max_weight_kg": 35000,
+    "height_m": 4.2,
+    "length_m": 10.0,
+    "width_m": 2.5,
+    "axle_count": 3,
+    "cargo_type": "tipper",
+    "nhvr_rules": {
+      "max_hours_per_day": 12,
+      "max_hours_per_week": 72,
+      "min_rest_after_shift_hours": 7
+    }
+  },
+  "Tanker": {
+    "max_speed_kmh": 90,
+    "fuel_consumption_L_per_km": 0.21,
+    "max_weight_kg": 38000,
+    "height_m": 4.2,
+    "length_m": 14.5,
+    "width_m": 2.5,
+    "axle_count": 3,
+    "cargo_type": "liquid_bulk",
+    "nhvr_rules": {
+      "max_hours_per_day": 12,
+      "max_hours_per_week": 72,
+      "min_rest_after_shift_hours": 7
+    }
+  },
+  "Livestock Carrier": {
+    "max_speed_kmh": 90,
+    "fuel_consumption_L_per_km": 0.19,
+    "max_weight_kg": 40000,
+    "height_m": 4.3,
+    "length_m": 16.0,
+    "width_m": 2.5,
+    "axle_count": 3,
+    "cargo_type": "livestock",
+    "nhvr_rules": {
+      "max_hours_per_day": 12,
+      "max_hours_per_week": 72,
+      "min_rest_after_shift_hours": 7
+    }
+  },
+  "Car Carrier": {
+    "max_speed_kmh": 95,
+    "fuel_consumption_L_per_km": 0.18,
+    "max_weight_kg": 45000,
+    "height_m": 4.3,
+    "length_m": 18.0,
+    "width_m": 2.5,
+    "axle_count": 3,
+    "cargo_type": "vehicles",
+    "nhvr_rules": {
+      "max_hours_per_day": 12,
+      "max_hours_per_week": 72,
+      "min_rest_after_shift_hours": 7
+    }
+  },
+  "Container Hauler": {
+    "max_speed_kmh": 100,
+    "fuel_consumption_L_per_km": 0.20,
+    "max_weight_kg": 42000,
+    "height_m": 4.3,
+    "length_m": 16.5,
+    "width_m": 2.5,
+    "axle_count": 3,
+    "cargo_type": "container",
+    "nhvr_rules": {
+      "max_hours_per_day": 12,
+      "max_hours_per_week": 72,
+      "min_rest_after_shift_hours": 7
+    }
+  }
+}
+

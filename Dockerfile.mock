@@ -1,0 +1,15 @@
+FROM python:3.11-slim-bookworm
+
+WORKDIR /app
+
+# Install runtime dependencies (reuse main requirements for consistency)
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy mock API server
+COPY scripts/mock_api_server.py .
+
+# Expose mock API port
+EXPOSE 8001
+
+CMD ["uvicorn", "mock_api_server:app", "--host", "0.0.0.0", "--port", "8001"]

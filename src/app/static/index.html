@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚛 Smart Route Optimizer for Australian Transport</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin=""/>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🚛 Smart Route Optimizer</h1>
+            <p class="subtitle">AI-Powered Route Planning for Australian Transport</p>
+        </header>
+
+        <div class="content">
+            <section class="form-section">
+                <h2>Route Request</h2>
+                <form id="route-form">
+                    <div class="form-group">
+                        <label for="state">State / Territory:</label>
+                        <select id="state" name="state" required>
+                            <option value="NSW">New South Wales (NSW)</option>
+                            <option value="VIC">Victoria (VIC)</option>
+                            <option value="QLD">Queensland (QLD)</option>
+                            <option value="SA">South Australia (SA)</option>
+                            <option value="WA">Western Australia (WA)</option>
+                            <option value="TAS">Tasmania (TAS)</option>
+                            <option value="NT">Northern Territory (NT)</option>
+                            <option value="ACT">Australian Capital Territory (ACT)</option>
+                            <option value="AUTO">Auto-detect from address</option>
+                        </select>
+                        <span class="hint">Select state for traffic &amp; weather data, or auto-detect</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="start_address">Start Address:</label>
+                        <input type="text" id="start_address" name="start_address"
+                               placeholder="e.g., Sydney, NSW" required>
+                        <span class="hint">Supported: Sydney, Newcastle, Wollongong, Central Coast, Gosford, Melson, Albury, Wagga Wagga, Dubbo, Coffs Harbour, Port Macquarie, Broken Hill, Melbourne, Geelong, Ballarat, Bendigo, Mildura, Warrnambool, Brisbane, Gold Coast, Sunshine Coast, Toowoomba, Townsville, Cairns, Adelaide, Mount Gambier, Port Augusta, Whyalla, Coober Pedy, Perth, Bunbury, Geraldton, Kalgoorlie, Busselton, Hobart, Launceston, Devonport, Burnie, Darwin, Alice Springs, Katherine, Canberra</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="end_address">End Address:</label>
+                        <input type="text" id="end_address" name="end_address"
+                               placeholder="e.g., Newcastle, NSW" required>
+                        <span class="hint">Enter destination – supports national coverage across all states and territories</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="vehicle_type">Vehicle Type:</label>
+                        <select id="vehicle_type" name="vehicle_type" required>
+                            <option value="Rigid">Rigid (2-axle)</option>
+                            <option value="Truck">Standard Truck (3-axle)</option>
+                            <option value="Semi-Trailer">Semi-Trailer (3-axle)</option>
+                            <option value="B-Double">B-Double (4-axle, 19m)</option>
+                            <option value="B-Triple">B-Triple (6-axle, 28m)</option>
+                            <option value="Tautliner">Tautliner (Curtain-sider)</option>
+                            <option value="Reefer">Refrigerated (Reefer)</option>
+                            <option value="Flatbed">Flatbed / Tipper</option>
+                            <option value="Dump Truck">Dump Truck (Off-highway)</option>
+                            <option value="Tanker">Tanker (Liquid bulk)</option>
+                            <option value="Livestock Carrier">Livestock Carrier</option>
+                            <option value="Car Carrier">Car Carrier (Vehicle transporter)</option>
+                            <option value="Container Hauler">Container Hauler</option>
+                        </select>
+                        <span class="hint">Each vehicle type has unique speed, fuel consumption, and NHVR fatigue constraints</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="end_address">End Address:</label>
+                        <input type="text" id="end_address" name="end_address"
+                               placeholder="e.g., Newcastle, NSW" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="vehicle_type">Vehicle Type:</label>
+                        <select id="vehicle_type" name="vehicle_type" required>
+                            <option value="Truck">Standard Truck</option>
+                            <option value="B-Double">B-Double</option>
+                            <option value="Semi-Trailer">Semi-Trailer</option>
+                        </select>
+                        <span class="hint">Different vehicles have different speed, fuel, and NHVR constraints</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="delivery_window">Delivery Window (Optional):</label>
+                        <input type="datetime-local" id="delivery_window" name="delivery_window">
+                        <span class="hint">If specified, route optimization will consider time constraints</span>
+                    </div>
+
+                    <button type="submit" id="submit-btn">
+                        <span class="btn-text">Optimize Route</span>
+                        <span class="btn-loading" style="display: none;">⏳ Optimizing...</span>
+                    </button>
+                </form>
+            </section>
+
+            <section id="loading" class="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>Optimizing route...</p>
+            </section>
+
+            <section id="error" class="error" style="display: none;">
+                <h3>Error</h3>
+                <p id="error-message"></p>
+            </section>
+
+            <section id="results" class="results" style="display: none;">
+                <h2>Optimized Route</h2>
+
+                <div class="map-container">
+                    <div id="map"></div>
+                </div>
+
+                <div class="results-grid">
+                    <div class="card summary">
+                        <h3>📊 Route Summary</h3>
+                        <div class="metrics">
+                            <div class="metric">
+                                <span class="label">Distance:</span>
+                                <span class="value" id="distance">—</span>
+                            </div>
+                            <div class="metric">
+                                <span class="label">Duration:</span>
+                                <span class="value" id="duration">—</span>
+                            </div>
+                            <div class="metric">
+                                <span class="label">Waypoints:</span>
+                                <span class="value" id="waypoints">—</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card savings">
+                        <h3>💰 Savings</h3>
+                        <div class="metrics">
+                            <div class="metric">
+                                <span class="label">Fuel:</span>
+                                <span class="value positive" id="fuel-savings">—</span>
+                            </div>
+                            <div class="metric">
+                                <span class="label">Cost:</span>
+                                <span class="value positive" id="cost-savings">—</span>
+                            </div>
+                            <div class="metric">
+                                <span class="label">CO₂ Reduction:</span>
+                                <span class="value positive" id="co2-savings">—</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card compliance">
+                        <h3>✅ Compliance Status</h3>
+                        <div class="compliance-status">
+                            <div class="compliance-item" id="nhvr-status">
+                                <span class="label">NHVR Compliant:</span>
+                                <span class="status">—</span>
+                            </div>
+                            <div class="compliance-item" id="cor-status">
+                                <span class="label">CoR Compliant:</span>
+                                <span class="status">—</span>
+                            </div>
+                        </div>
+                        <div id="compliance-details" class="compliance-details"></div>
+                    </div>
+
+                    <div class="card actions">
+                        <h3>📥 Download Reports</h3>
+                        <div class="download-buttons">
+                            <a id="download-pdf" class="download-btn" target="_blank">
+                                📄 PDF Report
+                            </a>
+                            <a id="download-gpx" class="download-btn" target="_blank">
+                                🗺️ GPX File
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="baseline-comparison">
+                    <h3>📈 Baseline Comparison</h3>
+                    <p>This optimized route is compared against a typical manual route (15% longer on average).</p>
+                    <ul>
+                        <li>Manual route distance: <span id="baseline-distance">—</span></li>
+                        <li>Optimized route distance: <span id="optimized-distance">—</span></li>
+                        <li>Distance reduction: <span id="distance-reduction">—</span></li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="info-section">
+                <h2>About This Tool</h2>
+                <p>The <strong>Smart Route Optimizer</strong> is designed specifically for Australian transport companies to:</p>
+                <ul>
+                    <li>Reduce fuel costs by 10–20% through optimized routing</li>
+                    <li>Ensure compliance with NHVR fatigue management rules and Chain of Responsibility laws</li>
+                    <li>Minimize CO₂ emissions for sustainability reporting</li>
+                    <li>Improve delivery times by avoiding traffic and weather delays</li>
+                </ul>
+                <p><em>This demo uses mock data for NSW roads, traffic, and weather conditions.</em></p>
+            </section>
+        </div>
+
+        <footer class="footer">
+            <p>© 2026 Smart Route Optimizer | Built for Australian Transport Industry</p>
+        </footer>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
+    <script src="/static/script.js"></script>
+</body>
+</html>
