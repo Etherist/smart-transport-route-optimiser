@@ -1,5 +1,36 @@
 # 🚛 Smart Route Optimiser for Australian Transport
 
+
+<!-- engineering-maturity:start -->
+## Engineering status
+
+**Estimated implementation completeness: 78% — advanced working implementation.**  
+**Assessment confidence: high.**
+
+This is an advanced working implementation: the principal architecture and functional paths are materially built and demonstrable. Remaining work is concentrated in integration depth, verification, hardening and release preparation.
+
+**What is already significant:** a substantive implemented codebase with multiple functional components; a meaningful automated verification suite; CI/automation is represented in the repository; deployment or runtime packaging assets are present.
+
+**Remaining engineering work:** finish release hardening and environment-level validation.
+
+**Production readiness:** Production readiness is not claimed yet. The project is better described as a substantial working implementation progressing through verification and hardening.
+
+| Evidence area | Remote repository evidence |
+| --- | --- |
+| Implementation | 20 source files; approximately 111 KiB of source code |
+| Verification | 10 test files; approximately 38 KiB of test code |
+| Automation | 2 GitHub Actions workflow(s) |
+| Build/configuration | 3 build/dependency manifest(s); 11 configuration file(s) |
+| Deployment | 11 deployment/runtime packaging asset(s) |
+| Documentation/examples | 10 documentation file(s); 0 example/demo file(s) |
+| Remote code inspection | 36 evidence-rich files read; 0 TODO/FIXME marker(s); 0 explicit unfinished marker(s) |
+
+
+> **Status precedence:** This evidence-based assessment supersedes older broad maturity wording elsewhere in this README where the two conflict.
+
+<sub>Engineering estimate refreshed 2026-09-25 from GitHub repository metadata and remotely read source/test/configuration files. It is an evidence-based maturity estimate, not a claim that every runtime path has been independently executed or externally certified.</sub>
+<!-- engineering-maturity:end -->
+
 > **AI-Powered, Nationwide Route Planning for Heavy Vehicles – Compliant, Sustainable, Scalable**
 
 ![GitHub license](https://img.shields.io/github/license/your-username/smart-route-optimizer?style=flat-square)
