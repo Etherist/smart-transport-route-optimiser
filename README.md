@@ -47,7 +47,7 @@ This is an advanced working implementation: the principal architecture and funct
 
 ## 📖 Executive Summary
 
-The **Smart Route Optimiser** is a production-grade, AI-driven routing platform engineered exclusively for the Australian heavy vehicle industry. It autonomously computes optimal routes across the **entire national road network** while enforcing **NHVR fatigue regulations**, **Chain of Responsibility** obligations, and **real-time traffic/weather conditions** – all wrapped in an elegant web UI, CLI, and REST API.
+The **Smart Route Optimiser** is a advanced working implementation, AI-driven routing platform engineered exclusively for the Australian heavy vehicle industry. It autonomously computes optimal routes across the **entire national road network** while enforcing **NHVR fatigue regulations**, **Chain of Responsibility** obligations, and **real-time traffic/weather conditions** – all wrapped in an elegant web UI, CLI, and REST API.
 
 ### Why This Exists
 
@@ -70,7 +70,7 @@ Our autonomous agent architecture replaces guesswork with **provably optimal, re
 | **✅ Compliance** | 100% NHVR/CoR | Automatic detection of daily/weekly hour violations before departure |
 | **💰 Savings** | 10–20% fuel reduction | Baseline manually-planned routes are typically 15% longer |
 | **📊 Reporting** | PDF + GPX | Audit-ready documentation for compliance and driver navigation |
-| **🔒 Production Ready** | Docker + K8s | Containerized, autoscaling, secure-by-default |
+| **🔒 Advanced Working Implementation** | Docker + K8s | Containerized, autoscaling, secure-by-default |
 | **🧪 Quality** | 100% test coverage | 87 tests across agents, API, utilities – zero warnings |
 | **📚 Documentation** | 7 deep-dive guides | Architecture, workflow, deployment, scaling, troubleshooting, fleet guide |
 
@@ -178,7 +178,7 @@ Includes:
 - Persistent reports volume
 - Hot-reload for development
 
-### Method 2: Kubernetes (Production-Ready)
+### Method 2: Kubernetes (Advanced Working Implementation)
 
 Deploy to any K8s cluster (EKS, GKE, AKS, on-prem):
 
