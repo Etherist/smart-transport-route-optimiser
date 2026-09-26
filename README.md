@@ -31,32 +31,26 @@ This is an advanced working implementation: the principal architecture and funct
 <sub>Engineering estimate refreshed 2026-09-25 from GitHub repository metadata and remotely read source/test/configuration files. It is an evidence-based maturity estimate, not a claim that every runtime path has been independently executed or externally certified.</sub>
 <!-- engineering-maturity:end -->
 
-> **AI-Powered, Nationwide Route Planning for Heavy Vehicles – Compliant, Sustainable, Scalable**
+> **AI-Powered Australian Heavy-Vehicle Route-Planning Demonstration – Constraint-Aware, Documented, Deployable**
 
-![GitHub license](https://img.shields.io/github/license/your-username/smart-route-optimizer?style=flat-square)
+![GitHub license](https://img.shields.io/github/license/Etherist/smart-transport-route-optimiser?style=flat-square)
 ![Python](https://img.shields.io/badge/python-3.11+-blue?style=flat-square&logo=python)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.104.1-009688?style=flat-square&logo=fastapi)
 ![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=flat-square&logo=docker)
 ![Kubernetes](https://img.shields.io/badge/Kubernetes-Deploy-326CE5?style=flat-square&logo=kubernetes)
-![Tests](https://img.shields.io/badge/tests-100%25%20coverage-brightgreen?style=flat-square)
-![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen?style=flat-square)
-![CI](https://img.shields.io/github/actions/workflow/status/your-username/smart-route-optimizer/test.yml?branch=main&style=flat-square)
 ![Docs](https://img.shields.io/badge/docs-📘-blue?style=flat-square)
 
 ---
 
 ## 📖 Executive Summary
 
-The **Smart Route Optimiser** is a advanced working implementation, AI-driven routing platform engineered exclusively for the Australian heavy vehicle industry. It autonomously computes optimal routes across the **entire national road network** while enforcing **NHVR fatigue regulations**, **Chain of Responsibility** obligations, and **real-time traffic/weather conditions** – all wrapped in an elegant web UI, CLI, and REST API.
+The **Smart Route Optimiser** is an advanced working implementation for Australian heavy-vehicle route planning. It computes routes over a bundled coarse-grained national demonstration graph, applies vehicle constraints and simplified NHVR/Chain of Responsibility checks, and incorporates simulated traffic and weather inputs. The implementation is exposed through a web UI, CLI and REST API, with Docker/Kubernetes deployment assets included.
 
 ### Why This Exists
 
-Australian logistics operators manage fleets crossing vast distances with complex compliance frameworks. Manual planning yields:
-- **15–25%** excess fuel burn on average
-- **Fines up to $30,000** for fatigue breaches
-- **Unexpected delays** from unplanned incidents
+Australian logistics operators manage fleets across long distances, changing road conditions and complex compliance obligations. Manual planning can make it difficult to compare route distance, operating cost, fatigue constraints and incident/weather effects consistently.
 
-Our autonomous agent architecture replaces guesswork with **provably optimal, regulation-compliant routes** – today, not tomorrow.
+The agent architecture demonstrates how route optimisation, simulated operating conditions and simplified compliance validation can be composed into a single auditable planning workflow.
 
 ---
 
@@ -64,14 +58,14 @@ Our autonomous agent architecture replaces guesswork with **provably optimal, re
 
 | Dimension | Impact | Detail |
 |-----------|--------|--------|
-| **🌏 National Coverage** | All 8 states/territories | 35 major nodes, 62 road segments, spanning Sydney→Perth, Darwin→Hobart |
-| **🚛 13 Vehicle Types** | Complete fleet coverage | From Rigid to B-Triple, Reefer to Tanker – each with unique kinematics |
+| **🌏 National Demonstration Graph** | All 8 states/territories represented | 35 major nodes and 62 road segments for coarse-grained demonstration routing |
+| **🚛 13 Configured Vehicle Types** | Broad demonstration coverage | From rigid trucks to B-Triples, reefers and tankers with configured constraints |
 | **⚡ Speed** | < 50ms Dijkstra | Optimized graph algorithms yield sub-50ms routing on 35-node network |
-| **✅ Compliance** | 100% NHVR/CoR | Automatic detection of daily/weekly hour violations before departure |
-| **💰 Savings** | 10–20% fuel reduction | Baseline manually-planned routes are typically 15% longer |
+| **✅ Compliance-Supporting Checks** | Simplified NHVR/CoR model | Flags configured daily/weekly driving-hour conditions; not a certified compliance system |
+| **💰 Savings Modelling** | Comparative estimates | Reports modelled fuel, cost and CO₂ differences between baseline and optimised demo routes |
 | **📊 Reporting** | PDF + GPX | Audit-ready documentation for compliance and driver navigation |
 | **🔒 Advanced Working Implementation** | Docker + K8s | Containerized, autoscaling, secure-by-default |
-| **🧪 Quality** | 100% test coverage | 87 tests across agents, API, utilities – zero warnings |
+| **🧪 Verification** | 86 test functions represented in the collected source | Current test CI requires attention; re-run locally for current pass/coverage evidence |
 | **📚 Documentation** | 7 deep-dive guides | Architecture, workflow, deployment, scaling, troubleshooting, fleet guide |
 
 ---
@@ -118,8 +112,8 @@ Major corridors include: Sydney–Melbourne, Brisbane–Sydney–Melbourne–Ade
 graph TD
     User[User<br/>Web UI/CLI/API] --> Gateway[FastAPI Gateway]
     Gateway --> Planner[Route Planner<br/>Geocode + Validate]
-    Gateway --> Traffic[Traffic Monitor<br/>Live Incidents]
-    Gateway --> Weather[Weather Monitor<br/>BOM Forecasts]
+    Gateway --> Traffic[Traffic Monitor<br/>Simulated Incidents]
+    Gateway --> Weather[Weather Monitor<br/>Simulated Weather]
     Planner --> Optimizer[Route Optimizer<br/>Dijkstra + Adjustments]
     Traffic --> Optimizer
     Weather --> Optimizer
@@ -166,8 +160,8 @@ sequenceDiagram
 The fastest way to see everything running:
 
 ```bash
-git clone https://github.com/your-username/smart-route-optimizer.git
-cd smart-route-optimizer
+git clone https://github.com/Etherist/smart-transport-route-optimiser.git
+cd smart-transport-route-optimiser
 docker-compose up -d
 # Visit http://localhost:8000 🎉
 ```
@@ -404,25 +398,13 @@ With 10 pods, platform handles **~2,500 optimizations per minute**.
 
 ---
 
-## 🧪 Testing – 100% Coverage
+## 🧪 Testing & Verification
 
 ```bash
 pytest tests/ -v --cov=src
 ```
 
-**Total: 86 tests | 100% pass | 0 warnings**
-
-| Module | Tests | Coverage |
-|--------|-------|----------|
-| `route_planner` | 9 | 100% |
-| `traffic_monitor` | 13 | 100% |
-| `weather_monitor` | 8 | 100% |
-| `route_optimizer` | 9 | 100% |
-| `compliance_validator` | 10 | 100% |
-| `savings_reporter` | 12 | 100% |
-| `utils` | 10 | 100% |
-| `api_integration` | 15 | 100% |
-| **Total** | **86** | **100%** |
+The collected repository contains **86 explicit test functions** across route planning, traffic/weather monitors, optimisation, compliance validation, reporting, utilities and API integration. The latest collected test workflow is failing, so this README does not claim a current 100% pass rate or coverage figure. Re-run the suite and generate a fresh coverage report for current verification evidence.
 
 ---
 
@@ -463,7 +445,7 @@ PORT=8000
 REQUEST_TIMEOUT=30
 ```
 
-**Default values** are safe for demo (mock data). For production, add real API credentials.
+**Default values** use demo/mock traffic and weather data. Real external API integrations are not part of the current implementation and require additional integration, credentials, validation and operational hardening.
 
 ### Road Network Selection
 
@@ -487,7 +469,7 @@ REQUEST_TIMEOUT=30
 **Result cards** show:
 - 📊 Distance & duration
 - 💰 Fuel/Cost/CO₂ savings
-- ✅ Compliance status (NHVR/CoR)
+- ✅ Simplified NHVR/CoR validation status
 - 📥 One-click PDF/GPX download
 
 ---
@@ -496,8 +478,8 @@ REQUEST_TIMEOUT=30
 
 ```bash
 # 1. Clone & install
-git clone https://github.com/your-username/smart-route-optimizer.git
-cd smart-route-optimizer
+git clone https://github.com/Etherist/smart-transport-route-optimiser.git
+cd smart-transport-route-optimiser
 make install   # or uv sync
 
 # 2. Run tests locally
@@ -529,7 +511,7 @@ git push
 
 | Quarter | Milestone |
 |---------|-----------|
-| Q2 2026 | Real-time Live Traffic NSW & BOM APIs (paid keys) |
+| Planned | Live Traffic NSW/BOM integrations with authenticated external APIs |
 | Q3 2026 | OR-Tools VRP for multi-stop routes (<10 stops) |
 | Q3 2026 | PostgreSQL + PostGIS persistence for dynamic network updates |
 | Q4 2026 | Driver roster integration (shift planning) |
@@ -553,13 +535,12 @@ Open an issue first for large changes.
 
 ## 📞 Contact
 
-- **Issues:** https://github.com/Etherist/smart-route-optimiser/issues
+- **Issues:** https://github.com/Etherist/smart-transport-route-optimiser/issues
 - **GitHub**: [@Etherist](https://github.com/Etherist)
 - **LinkedIn**: [My LinkedIn Profile](https://www.linkedin.com/in/robert-b-7aba31a/)
 - **Portfolio**: [perspicacious.au](https://perspicacious.au)
 - **Email**: perspicacious@tuta.io
-- **Issues:** [GitHub Issues](https://github.com/Etherist/ai-fraud-detection-sme/issues)
-- **Discussions:** [GitHub Discussions](https://github.com/Etherist/ai-fraud-detection-sme/discussions)
+- **Discussions:** [GitHub Discussions](https://github.com/Etherist/smart-transport-route-optimiser/discussions)
 
 ---
 
